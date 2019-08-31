@@ -29,13 +29,13 @@ const PersonDetail: React.FunctionComponent<any> = ({
   const renderPerson = () => {
     let person: any = data.person;
     return person ? (
-      <>
-        <img src={person.picture.large} />
+      <div>
         <div>
-          {person.name.first} {person.name.last}
+          <img src={person.picture.large} />
         </div>
+        <div>{person.name.first} {person.name.last}</div>
         <div>{person.phone}</div>
-      </>
+      </div>
     ) : null;
   };
 
