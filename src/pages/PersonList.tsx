@@ -5,8 +5,13 @@ import {
   IonToolbar,
   IonItem,
   IonLabel,
-  IonAvatar
+  IonAvatar,
+  IonButtons,
+  IonButton,
+  IonIcon
 } from "@ionic/react";
+import { addCircleOutline } from "ionicons/icons";
+
 import React from "react";
 
 import { useState, useEffect } from "react";
@@ -27,7 +32,7 @@ const PersonList: React.FunctionComponent<any> = ({
    *
    */
   async function getData() {
-    if (getAllPeople().length == 0) {
+    if (getAllPeople().length === 0) {
       const data = await loadAllPeople();
       setData({ persons: data });
     } else {
@@ -40,6 +45,11 @@ const PersonList: React.FunctionComponent<any> = ({
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>React Class - Ionic - In Person List</IonTitle>
+          <IonButtons slot="end">
+          <IonButton onClick={() => history.push('/person-new')}>
+            <IonIcon slot="icon-only" icon={addCircleOutline}></IonIcon>
+          </IonButton>
+        </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -50,7 +60,7 @@ const PersonList: React.FunctionComponent<any> = ({
               onClick={() => history.push("/person-detail/" + person.phone)}
             >
               <IonAvatar slot="start">
-                <img src={person.picture.medium} />
+                <img src={person.picture.medium}  alt={""}/> />
               </IonAvatar>
               <IonLabel>
                 <h1>

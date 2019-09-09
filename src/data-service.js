@@ -22,7 +22,7 @@ export const getAllPeople = () => {
 // id specified by the caller
 export const getPersonById = _id => {
   return people.find(person => {
-    return person.phone == _id;
+    return person.phone === _id;
   });
 };
 
