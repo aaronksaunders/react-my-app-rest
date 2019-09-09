@@ -8,7 +8,8 @@ import {
   IonAvatar,
   IonButtons,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonThumbnail
 } from "@ionic/react";
 import { addCircleOutline } from "ionicons/icons";
 
@@ -59,9 +60,9 @@ const PersonList: React.FunctionComponent<any> = ({
               key={person.phone}
               onClick={() => history.push("/person-detail/" + person.phone)}
             >
-              <IonAvatar slot="start">
-                <img src={person.picture.medium}  alt={""}/> />
-              </IonAvatar>
+              <IonThumbnail slot="start">
+                <img src={person.picture.medium}  alt={""}/>
+              </IonThumbnail>
               <IonLabel>
                 <h1>
                   {person.name.first} {person.name.last}

@@ -36,7 +36,7 @@ const App: React.FunctionComponent = () => (
             component={PersonDetail}
             exact={true}
           />          <Route
-          path="/person-new/"
+          path="/person-new"
           component={PersonCreate}
           exact={true}
         />
