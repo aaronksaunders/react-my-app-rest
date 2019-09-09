@@ -13,7 +13,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
-import { getPersonById } from "../data-service";
 
 const PersonCreate: React.FunctionComponent<any> = ({
   match,
