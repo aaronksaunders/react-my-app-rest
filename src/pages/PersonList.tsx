@@ -5,7 +5,6 @@ import {
   IonToolbar,
   IonItem,
   IonLabel,
-  IonAvatar,
   IonButtons,
   IonButton,
   IonIcon,
@@ -45,7 +44,7 @@ const PersonList: React.FunctionComponent<any> = ({
     <>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle>React Class - Ionic - In Person List</IonTitle>
+          <IonTitle>React Class - Person List</IonTitle>
           <IonButtons slot="end">
           <IonButton onClick={() => history.push('/person-new')}>
             <IonIcon slot="icon-only" icon={addCircleOutline}></IonIcon>
