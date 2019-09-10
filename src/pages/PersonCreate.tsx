@@ -16,8 +16,9 @@ import AddImage from "./AddImage";
 
 const PersonCreate: React.FunctionComponent<any> = ({
   match,
-  history
-}: RouteComponentProps<any>) => {
+  history,
+  onClose,
+}: any) => {
   // react hooks...
   const useForm = (callback: Function) => {
     // this is the shap of the state model for this functional component
@@ -60,7 +61,7 @@ const PersonCreate: React.FunctionComponent<any> = ({
   };
 
   const { values, handleChange, handleSubmit } = useForm(() => {
-    debugger;
+    onClose({success : true, values})
   });
 
   return (
@@ -142,7 +143,7 @@ const PersonCreate: React.FunctionComponent<any> = ({
         <div
           style={{ justifyContent: "center", display: "flex", paddingTop: 8 }}
         >
-          <IonButton color="danger" onClick={() => history.go(-1)}>
+          <IonButton color="danger" onClick={() => onClose({cancel :true})}>
             CANCEL
           </IonButton>
           <IonButton onClick={handleSubmit}>CREATE USER</IonButton>

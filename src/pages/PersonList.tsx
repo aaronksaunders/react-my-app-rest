@@ -8,7 +8,8 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
-  IonThumbnail
+  IonThumbnail,
+  IonModal
 } from "@ionic/react";
 import { addCircleOutline } from "ionicons/icons";
 
@@ -18,11 +19,13 @@ import { useState, useEffect } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
 import { loadAllPeople, getAllPeople } from "../data-service";
+import PersonCreate from "./PersonCreate";
 
 const PersonList: React.FunctionComponent<any> = ({
   history
 }: RouteComponentProps<any>) => {
   const [data, setData] = useState({ persons: [] });
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     getData();
@@ -40,19 +43,32 @@ const PersonList: React.FunctionComponent<any> = ({
     }
   }
 
+  function handleModalClose(_event:any) {
+    console.log(_event)
+    debugger;
+    setShowModal(false)
+  }
+
   return (
     <>
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>React Class - Person List</IonTitle>
           <IonButtons slot="end">
-          <IonButton onClick={() => history.push('/person-new')}>
-            <IonIcon slot="icon-only" icon={addCircleOutline}></IonIcon>
-          </IonButton>
-        </IonButtons>
+            <IonButton
+              onClick={() => setShowModal(true) /*history.push('/person-new')*/}
+            >
+              <IonIcon slot="icon-only" icon={addCircleOutline}></IonIcon>
+            </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
+        <IonModal isOpen={showModal}>
+          <PersonCreate onClose={handleModalClose}></PersonCreate>
+          {/* <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton> */}
+        </IonModal>
+
         {data.persons.map((person: any) => {
           return (
             <IonItem
@@ -60,7 +76,7 @@ const PersonList: React.FunctionComponent<any> = ({
               onClick={() => history.push("/person-detail/" + person.phone)}
             >
               <IonThumbnail slot="start">
-                <img src={person.picture.medium}  alt={""}/>
+                <img src={person.picture.medium} alt={""} />
               </IonThumbnail>
               <IonLabel>
                 <h1>
