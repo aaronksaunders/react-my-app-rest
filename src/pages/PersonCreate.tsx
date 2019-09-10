@@ -10,9 +10,9 @@ import {
 } from "@ionic/react";
 import React from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
-
+import AddImage from "./AddImage";
 
 const PersonCreate: React.FunctionComponent<any> = ({
   match,
@@ -23,7 +23,8 @@ const PersonCreate: React.FunctionComponent<any> = ({
     // this is the shap of the state model for this functional component
     const [values, setValues] = useState({
       name: {},
-      location: {}
+      location: {},
+      picture: {}
     });
 
     // when user calls submit, we can validate the datas state and
@@ -36,7 +37,7 @@ const PersonCreate: React.FunctionComponent<any> = ({
     // when the data changes handle  the event and set the data
     // properly
     const handleChange = (event: any, data?: any) => {
-      event.persist();
+      event && event.persist();
 
       if (data) {
         setValues({
@@ -130,6 +131,13 @@ const PersonCreate: React.FunctionComponent<any> = ({
               ></IonInput>
             </IonItem>
           </div>
+        </div>
+        <div>
+          <AddImage
+            onChange={(_eventData: any) => {
+              handleChange(null, { picture: _eventData || {} });
+            }}
+          ></AddImage>
         </div>
         <div
           style={{ justifyContent: "center", display: "flex", paddingTop: 8 }}
