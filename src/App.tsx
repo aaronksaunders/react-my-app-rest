@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonPage, IonRouterOutlet } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+import { IonReactRouter, ViewManager } from "@ionic/react-router";
 import PersonList from "./pages/PersonList";
 import PersonDetail from "./pages/PersonDetail";
 import PersonCreate from "./pages/PersonCreate";
@@ -29,19 +29,22 @@ const App: React.FunctionComponent = () => (
   <IonApp>
     <IonReactRouter>
       <IonPage>
-        <IonRouterOutlet>
-          <Route path="/person-list" component={PersonList} exact={true} />
-          <Route
-            path="/person-detail/:userId"
-            component={PersonDetail}
-            exact={true}
-          />          <Route
-          path="/person-new"
-          component={PersonCreate}
-          exact={true}
-        />
-          <Route exact path="/" render={() => <Redirect to="/person-list" />} />
-        </IonRouterOutlet>
+        <ViewManager>
+          <IonRouterOutlet>
+            <Route path="/person-list" component={PersonList} exact={true} />
+            <Route
+              path="/person-detail/:userId"
+              component={PersonDetail}
+              exact={true}
+            />
+            <Route path="/person-new" component={PersonCreate} exact={true} />
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect to="/person-list" />}
+            />
+          </IonRouterOutlet>
+        </ViewManager>
       </IonPage>
     </IonReactRouter>
   </IonApp>
