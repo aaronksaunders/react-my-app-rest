@@ -3,9 +3,6 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonItem,
-  IonLabel,
-  IonAvatar,
   IonButton
 } from "@ionic/react";
 import React from "react";
@@ -24,14 +21,14 @@ const PersonDetail: React.FunctionComponent<any> = ({
   useEffect(() => {
     let p = getPersonById(match.params.userId);
     setPerson({ person: p as any });
-  }, []);
+  }, [match.params.userId]);
 
   const renderPerson = () => {
     let person: any = data.person;
     return person ? (
       <div>
         <div>
-          <img src={person.picture.large} />
+          <img src={person.picture.large} alt={""}/>
         </div>
         <div>{person.name.first} {person.name.last}</div>
         <div>{person.phone}</div>
